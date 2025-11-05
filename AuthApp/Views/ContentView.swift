@@ -19,12 +19,10 @@ struct ContentView: View {
     func login() {
         Task {
             await loginVM.login()
-            if loginVM.errorMessage == nil {
-                print("Login succeeded")
-            } else {
-                print("Login failed: \(loginVM.errorMessage!)")
+            if loginVM.errorMessage != nil {
                 return
             }
+            print("Login succeeded")
             await loginVM.getUser()
             isGettingUser = true
         }
@@ -53,20 +51,22 @@ struct ContentView: View {
                     Spacer()
                 }
             }
-            HStack {
-                Spacer()
-                Button {
-                    Task {
-                        await loginVM.getUser()
-                        if loginVM.errorMessage == nil {
-                            isGettingUser = true
+            Section {
+                HStack {
+                    Spacer()
+                    Button {
+                        Task {
+                            await loginVM.getUser()
+                            if loginVM.errorMessage == nil {
+                                isGettingUser = true
+                            }
                         }
+                    } label: {
+                        Text("Get User")
+                            .accessibilityIdentifier("loginButton")
                     }
-                } label: {
-                    Text("Get User")
-                        .accessibilityIdentifier("loginButton")
+                    Spacer()
                 }
-                Spacer()
             }
 
             
