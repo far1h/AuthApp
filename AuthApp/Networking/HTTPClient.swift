@@ -31,6 +31,9 @@ struct HTTPClient {
         let (data, response) =  try await URLSession.shared.data(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            if let errorReponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                print("Error message from server: \(errorReponse.error)")
+            }
             throw NetworkError.badRequest
         }
         
@@ -59,6 +62,9 @@ struct HTTPClient {
         let (data, response) =  try await URLSession.shared.data(for: urlRequest)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            if let errorReponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                print("Error message from server: \(errorReponse.error)")
+            }
             throw NetworkError.badRequest
         }
         

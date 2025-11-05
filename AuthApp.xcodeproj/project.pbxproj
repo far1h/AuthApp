@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91B987B12EBAD44300B2BD14 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B987B02EBAD44300B2BD14 /* ErrorResponse.swift */; };
 		91E645802EBA01DF00F4BAF7 /* AuthAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6457F2EBA01DF00F4BAF7 /* AuthAppApp.swift */; };
 		91E645822EBA01DF00F4BAF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E645812EBA01DF00F4BAF7 /* ContentView.swift */; };
 		91E645842EBA01E000F4BAF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91E645832EBA01E000F4BAF7 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		91B987B02EBAD44300B2BD14 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		91E6457C2EBA01DF00F4BAF7 /* AuthApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuthApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E6457F2EBA01DF00F4BAF7 /* AuthAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAppApp.swift; sourceTree = "<group>"; };
 		91E645812EBA01DF00F4BAF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				91E6458D2EBA023800F4BAF7 /* LoginResponse.swift */,
+				91B987B02EBAD44300B2BD14 /* ErrorResponse.swift */,
 				91E6458F2EBA024000F4BAF7 /* GetUserResponse.swift */,
 			);
 			path = Models;
@@ -203,6 +206,7 @@
 				91E645902EBA024000F4BAF7 /* GetUserResponse.swift in Sources */,
 				91E645962EBA035300F4BAF7 /* HomeView.swift in Sources */,
 				91E645B92EBA0C3A00F4BAF7 /* KeyChainWrapper.swift in Sources */,
+				91B987B12EBAD44300B2BD14 /* ErrorResponse.swift in Sources */,
 				91E6458E2EBA023800F4BAF7 /* LoginResponse.swift in Sources */,
 				91E645B62EBA09AD00F4BAF7 /* LoginViewModel.swift in Sources */,
 			);

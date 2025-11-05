@@ -53,6 +53,23 @@ struct ContentView: View {
                     Spacer()
                 }
             }
+            HStack {
+                Spacer()
+                Button {
+                    Task {
+                        await loginVM.getUser()
+                        if loginVM.errorMessage == nil {
+                            isGettingUser = true
+                        }
+                    }
+                } label: {
+                    Text("Get User")
+                        .accessibilityIdentifier("loginButton")
+                }
+                Spacer()
+            }
+
+            
             if loginVM.errorMessage != nil {
                 Text(loginVM.errorMessage ?? "")
                     .foregroundColor(.red)

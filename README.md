@@ -7,6 +7,7 @@ Update 04/11/2025:
 
 Todo:
 - [x] Simple JWT Authentication
+    - [ ] Figure out how to return Response and Errors from HTTPClient and handle them in ViewModel
 - [ ] JWT Refresh Tokens
 - [ ] OAuth2 Integration
 - [ ] Role-Based Access Control
