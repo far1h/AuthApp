@@ -8,24 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isGettingUser = false
     @StateObject private var loginVM = LoginViewModel(httpClient: HTTPClient())
         
     private var isFormValid: Bool {
         return !loginVM.username.isEmpty && !loginVM.password.isEmpty
-    }
-    
-    
-    func login() {
-        Task {
-            await loginVM.login()
-            if loginVM.errorMessage != nil {
-                return
-            }
-            print("Login succeeded")
-            await loginVM.getUser()
-            isGettingUser = true
-        }
     }
     
     var body: some View {
@@ -42,7 +28,9 @@ struct ContentView: View {
                     Spacer()
                     Button {
                         if isFormValid {
-                            login()
+                            Task {
+                                await loginVM.login()
+                            }
                         }
                     } label: {
                         Text("Login")
@@ -57,13 +45,23 @@ struct ContentView: View {
                     Button {
                         Task {
                             await loginVM.getUser()
-                            if loginVM.errorMessage == nil {
-                                isGettingUser = true
-                            }
                         }
                     } label: {
                         Text("Get User")
-                            .accessibilityIdentifier("loginButton")
+                            .accessibilityIdentifier("getUserButton")
+                    }
+                    Spacer()
+                }
+            }
+            Section {
+                HStack {
+                    Spacer()
+                    Button {
+                        loginVM.deleteToken()
+                    } label: {
+                        Text("Delete Token")
+                            .foregroundColor(.red)
+                            .accessibilityIdentifier("deleteTokenButton")
                     }
                     Spacer()
                 }
@@ -76,7 +74,7 @@ struct ContentView: View {
                     .accessibilityIdentifier("errorMessageText")
             }
         }
-        .sheet(isPresented: $isGettingUser) {
+        .sheet(isPresented: $loginVM.isGettingUser) {
             Text("User: \(loginVM.getUserResponse?.username ?? "")")
                 .accessibilityIdentifier("userText")
             Text("Name: \(loginVM.getUserResponse?.name ?? "")")

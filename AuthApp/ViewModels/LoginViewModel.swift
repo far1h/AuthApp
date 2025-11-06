@@ -14,7 +14,8 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var getUserResponse: GetUserResponse?
     @Published var errorMessage: String?
-    
+    @Published var isGettingUser = false
+
     private var httpClient: HTTPClient
     
     init(httpClient: HTTPClient) {
@@ -41,8 +42,17 @@ class LoginViewModel: ObservableObject {
         do {
             let userResponse = try await httpClient.getUser()
             self.getUserResponse = userResponse
+            self.isGettingUser = true
         } catch {
             errorMessage = "Get user failed: \(error)"
+        }
+    }
+    
+    func deleteToken() {
+        if Keychain<String>.delete("jwttoken") {
+            print("Token deleted from keychain")
+        } else {
+            print("Failed to delete token from keychain")
         }
     }
     
